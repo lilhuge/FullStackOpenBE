@@ -26,10 +26,6 @@ const persons = [
   },
 ];
 
-app.get("/api/persons", (request, response) => {
-  response.json(persons);
-});
-
 app.get("/info", (request, response) => {
   const personsCount = persons.length;
   const date = new Date();
@@ -39,6 +35,25 @@ app.get("/info", (request, response) => {
   `;
   response.set("Content-Type", "text/html");
   response.send(htmlString);
+});
+
+app.get("/api/persons", (request, response) => {
+  response.json(persons);
+});
+
+app.get("/api/persons/:id", (request, response) => {
+  const id = Number(request.params.id);
+
+  const person = persons.find((person) => {
+    return person.id === id;
+  });
+  console.log(person);
+
+  if (person) {
+    response.json(person);
+  } else {
+    response.status(404).end();
+  }
 });
 
 const PORT = 3001;
