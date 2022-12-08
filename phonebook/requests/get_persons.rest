@@ -5,3 +5,10 @@ GET http://localhost:3001/api/persons
 GET http://localhost:3001/api/persons/2
 
 
+###
+
+GET https://summer-firefly-2330.fly.dev/api/persons
+
+###
+
+GET https://summer-firefly-2330.fly.dev/api/persons/2
