@@ -54,18 +54,21 @@ app.get("/api/notes", (request, response) => {
 });
 
 app.get("/api/notes/:id", (request, response) => {
-  const id = Number(request.params.id);
+  //const id = Number(request.params.id);
 
-  const note = notes.find((note) => {
-    console.log(note.id, typeof note.id, id, typeof id, note.id === id);
-    return note.id === id;
-  });
-  if (note) {
+  // const note = notes.find((note) => {
+  //   console.log(note.id, typeof note.id, id, typeof id, note.id === id);
+  //   return note.id === id;
+  // });
+  // if (note) {
+  //   response.json(note);
+  // } else {
+  //   response.statusMessage = "Custom Status Message";
+  //   response.status(404).end();
+  // }
+  Note.findById(request.params.id).then((note) => {
     response.json(note);
-  } else {
-    response.statusMessage = "Custom Status Message";
-    response.status(404).end();
-  }
+  });
 });
 
 app.post("/api/notes", (request, response) => {
@@ -77,19 +80,22 @@ app.post("/api/notes", (request, response) => {
     });
   }
 
-  const note = {
+  const note = new Note({
     content: body.content,
     important: body.important || false,
     date: new Date(),
-    id: generateId(),
-  };
+    // id: generateId(),
+  });
 
   // const maxId = notes.length > 0 ? Math.max(...notes.map((n) => n.id)) : 0;
   // note.id = maxId + 1;
 
-  notes = notes.concat(note);
-  console.log(note);
-  response.json(note);
+  // notes = notes.concat(note);
+  // console.log(note);
+  // response.json(note);
+  note.save().then((savedNote) => {
+    response.json(savedNote);
+  });
 });
 
 app.delete("/api/notes/:id", (request, response) => {

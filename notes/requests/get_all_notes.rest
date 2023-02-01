@@ -1,1 +1,5 @@
 GET http://localhost:3001/api/notes
+
+###
+
+GET https://muddy-sound-7810.fly.dev/api/notes

@@ -1,6 +1,6 @@
-# fly.toml file generated for summer-firefly-2330 on 2022-12-08T17:35:46Z
+# fly.toml file generated for hugo-phonebook-fullstackopen on 2023-01-17T16:01:23Z
 
-app = "summer-firefly-2330"
+app = "hugo-phonebook-fullstackopen"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []

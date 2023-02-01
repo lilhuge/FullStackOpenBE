@@ -5,3 +5,13 @@ Content-Type: application/json
     "content": "VS Code REST client is also a good tool",
     "important": false
 }
+
+###
+
+POST https://muddy-sound-7810.fly.dev/api/notes
+Content-Type: application/json
+
+{
+    "content": "VS Code REST client is also a good tool",
+    "important": false
+}
