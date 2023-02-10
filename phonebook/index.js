@@ -121,16 +121,24 @@ app.post("/api/persons", (request, response) => {
       error: "contact with this name already exists",
     });
   }
-  console.log(Math.floor(Math.random() * 999999));
-  const newPerson = {
-    id: Math.floor(Math.random() * 999999),
-    name: body.name,
-    number: body.number,
-  };
-  console.log(newPerson);
+  // console.log(Math.floor(Math.random() * 999999));
+  // const newPerson = {
+  //   id: Math.floor(Math.random() * 999999),
+  //   name: body.name,
+  //   number: body.number,
+  // };
+  // console.log(newPerson);
 
-  persons = persons.concat(newPerson);
-  response.json(newPerson);
+  // persons = persons.concat(newPerson);
+
+  const person = new Person({
+    name: newName,
+    number: newNumber,
+  });
+
+  person.save().then((savedPerson) => {
+    response.json(savedPerson);
+  });
 });
 
 const PORT = process.env.PORT || 3001;

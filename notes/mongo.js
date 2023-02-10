@@ -1,3 +1,4 @@
+// THIS IS A SEPARATE PROGRAMME FOR ADDING ENTRIES TO MONGO DB AT CLI
 const mongoose = require("mongoose");
 
 if (process.argv.length < 3) {
