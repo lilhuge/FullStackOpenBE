@@ -30,14 +30,16 @@ app.use(morgan(loggerFunction));
 let persons = [];
 
 app.get("/info", (request, response) => {
-  const personsCount = persons.length;
-  const date = new Date();
-  const htmlString = `
-  <p>Phonebook has info for ${personsCount} people</p>
-  <p>${new Date()}</p>
-  `;
-  response.set("Content-Type", "text/html");
-  response.send(htmlString);
+  Person.count().then((personsCount) => {
+    console.log(personsCount);
+    const date = new Date();
+    const htmlString = `
+    <p>Phonebook has info for ${personsCount} people</p>
+    <p>${new Date()}</p>
+    `;
+    response.set("Content-Type", "text/html");
+    response.send(htmlString);
+  });
 });
 
 app.get("/api/persons", (request, response) => {
@@ -107,8 +109,7 @@ app.put("/api/persons/:id", (request, response, next) => {
     number: body.number,
   };
 
-  Person
-    .findByIdAndUpdate(request.params.id, person, { new: true })
+  Person.findByIdAndUpdate(request.params.id, person, { new: true })
     .then((updatedPerson) => {
       response.json(updatedPerson);
     })
