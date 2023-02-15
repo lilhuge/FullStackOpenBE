@@ -1,1 +1,5 @@
 DELETE http://localhost:3001/api/persons/63e67c5084aec4e791b37a80
+
+###
+
+DELETE http://localhost:3001/api/persons/"someIncorrectEndpoint"
