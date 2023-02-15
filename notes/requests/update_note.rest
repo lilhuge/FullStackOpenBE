@@ -1,0 +1,17 @@
+PUT http://localhost:3001/api/notes/63ecf37bad07f07b65f8d006
+Content-Type: application/json
+
+{
+    "content": "Notey mc note face",
+    "important": false
+}
+
+###
+
+PUT http://localhost:3001/api/notes/63d80662b89a5bb162a6a9e1
+Content-Type: application/json
+
+{
+    "content": "My good sir, here is another note",
+    "important": false
+}

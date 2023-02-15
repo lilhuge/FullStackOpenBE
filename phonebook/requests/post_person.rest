@@ -1,7 +1,17 @@
+### Success
 POST http://localhost:3001/api/persons
 Content-Type: application/json 
 
 {
     "name": "Namey McNameFace",
+    "number": "12345"
+}
+
+### Name too short
+POST http://localhost:3001/api/persons
+Content-Type: application/json 
+
+{
+    "name": "Oi",
     "number": "12345"
 }
