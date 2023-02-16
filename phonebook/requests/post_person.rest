@@ -3,8 +3,8 @@ POST http://localhost:3001/api/persons
 Content-Type: application/json 
 
 {
-    "name": "Namey McNameFace",
-    "number": "12345"
+    "name": "Namey McNameFace2",
+    "number": "123-1234567"
 }
 
 ### Name too short
@@ -13,5 +13,14 @@ Content-Type: application/json
 
 {
     "name": "Oi",
-    "number": "12345"
+    "number": "12-123456"
+}
+
+### Name too short
+POST http://localhost:3001/api/persons
+Content-Type: application/json 
+
+{
+    "name": "Hugo matthews",
+    "number": "1234512343"
 }
