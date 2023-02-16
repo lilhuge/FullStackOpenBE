@@ -23,7 +23,7 @@ const personSchema = new mongoose.Schema({
 
 const Person = mongoose.model("Person", personSchema);
 
-mongoose.connect(url).then((result) => {
+mongoose.connect(url).then(() => {
   console.log("connected");
 });
 
