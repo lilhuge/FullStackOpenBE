@@ -1,5 +1,6 @@
 const { ApolloServer } = require("@apollo/server");
 const { startStandaloneServer } = require("@apollo/server/standalone");
+const { v1: uuid } = require("uuid");
 
 let authors = [
   {
@@ -85,7 +86,7 @@ let books = [
     genres: ["classic", "crime"],
   },
   {
-    title: "The Demon ",
+    title: "The Demon",
     published: 1872,
     author: "Fyodor Dostoevsky",
     id: "afa5de04-344d-11e9-a414-719c6709cf3e",
@@ -120,6 +121,15 @@ const typeDefs = `
     allBooks(author: String, genre: String): [Book!]!
     allAuthors: [Author!]!
     }
+
+    type Mutation {
+      addBook(
+        title: String!
+        published: Int!
+        author: String!
+        genres: [String!]!
+      ): Book
+    }
 `;
 
 const resolvers = {
@@ -144,6 +154,20 @@ const resolvers = {
     bookCount: (root) => {
       const booksByAuthor = books.filter((book) => book.author === root.name);
       return booksByAuthor.length;
+    },
+  },
+  Mutation: {
+    addBook: (root, args) => {
+      const authorExists = authors.find(
+        (author) => author.name === args.author
+      );
+      if (!authorExists) {
+        const newAuthor = { name: args.author, id: uuid() };
+        authors.push(newAuthor);
+      }
+      const newBook = { ...args, id: uuid() };
+      books.push(newBook);
+      return newBook;
     },
   },
 };
