@@ -129,6 +129,10 @@ const typeDefs = `
         author: String!
         genres: [String!]!
       ): Book
+      editAuthor(
+        name: String!
+        born: Int!
+      ): Author
     }
 `;
 
@@ -168,6 +172,17 @@ const resolvers = {
       const newBook = { ...args, id: uuid() };
       books.push(newBook);
       return newBook;
+    },
+    editAuthor: (root, args) => {
+      const author = authors.find((author) => author.name === args.name);
+      if (!author) {
+        return null;
+      }
+      const updatedAuthor = { ...author, born: args.born };
+      authors = authors.map((author) =>
+        author.name === args.name ? updatedAuthor : author
+      );
+      return updatedAuthor
     },
   },
 };
